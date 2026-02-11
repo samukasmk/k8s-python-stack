@@ -19,5 +19,5 @@ RUN pip install Flask gunicorn
 COPY . /app/
 
 # Define command to run flask
-CMD ["gunicorn", "--bind", "0.0.0.0:9000", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
 

@@ -2,6 +2,6 @@ services:
   flask:
     build: .
     ports:
-      - "9000:9000"
+      - "8000:8000"
     volumes:
       - ".:/app"

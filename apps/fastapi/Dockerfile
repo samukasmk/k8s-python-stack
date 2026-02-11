@@ -19,4 +19,4 @@ RUN pip install fastapi uvicorn
 COPY . /app/
 
 # Define command to run django
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "9000"]
