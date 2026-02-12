@@ -20,11 +20,11 @@ k8s_resource('example-python', port_forwards=8000)
 
 docker_build(
     'example-python-image',
-    '.',
+    './apps/flask',
     # dockerfile="Dockerfile",
     build_args={'flask_debug': 'True'},
     live_update=[
-        sync('.', '/app'),
+        sync('./apps/flask', '/app'),
 ])
 
 local_resource(
