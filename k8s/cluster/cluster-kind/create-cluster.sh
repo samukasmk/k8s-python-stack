@@ -7,6 +7,8 @@ if [ -z "$CLUSTER_NAME" ]; then
 	exit 1
 fi
 
+echo
+echo
 echo '=========================================================================='
 echo "# kind create cluster --name \"$CLUSTER_NAME\" --config ./manifests/kind.yml"
 echo '=========================================================================='

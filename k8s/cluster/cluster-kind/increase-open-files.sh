@@ -1,6 +1,8 @@
 #!/bin/bash
 #
 
+echo
+echo
 echo '=========================================================================='
 echo " Increasing the number of open files for the cluster nodes to prevent 'too many open files' errors."
 echo '=========================================================================='
