@@ -1,14 +1,35 @@
-# flask app
-docker_build('flask', './apps/flask')
-k8s_yaml('./apps/flask/kubernetes.yaml')
-k8s_resource('flask', port_forwards=8000)
+# -*- mode: Python -*
 
-# django app
-docker_build('django', './apps/django')
-k8s_yaml('./apps/django/kubernetes.yaml')
-k8s_resource('django', port_forwards=8080)
+#
+# Docker registry inside k8s cluster
+#
+default_registry(
+    "registry.tools.127.0.0.1.nip.io"
+)
 
-# fastapi app
-docker_build('fastapi', './apps/fastapi')
-k8s_yaml('./apps/fastapi/kubernetes.yaml')
-k8s_resource('fastapi', port_forwards=9000)
+#
+# Flask app
+#
+
+# kubernetes manifests
+k8s_yaml('k8s/python-apps/flask/manifests/1.deployment.yaml')
+# k8s_yaml('k8s/python-apps/flask/manifests/2.service.yaml')
+# k8s_yaml('k8s/python-apps/flask/manifests/3.ingres.yaml')
+
+k8s_resource('example-python', port_forwards=8000)
+
+docker_build(
+    'example-python-image',
+    '.',
+    # dockerfile="Dockerfile",
+    build_args={'flask_debug': 'True'},
+    live_update=[
+        sync('.', '/app'),
+])
+
+local_resource(
+  "restart-example-python",
+  cmd="kubectl rollout restart deploy/example-python",
+  deps=["."],  # watch folders to restart the deployment when files change
+  auto_init=False
+)

@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+
+kind: Ingress
+
+metadata:
+  name: web
+  # annotations:
+  #   nginx.ingress.kubernetes.io/rewrite-target: /
+
+spec:
+  ingressClassName: nginx
+
+  # tls:
+  # - hosts:
+  #     - apps.127.0.0.1.nip.io
+  #   secretName: https-certs
+
+  rules:
+  - host: apps.127.0.0.1.nip.io
+
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: example-python-service
+            port:
+              number: 8000
