@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: example-python-service
+  name: flask-app-service
 spec:
   selector:
-    app: example-python
+    app: flask-app
   ports:
   - port: 80
     targetPort: 5678

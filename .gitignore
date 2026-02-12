@@ -207,4 +207,4 @@ marimo/_lsp/
 __marimo__/
 
 # HTTPS certificates
-#k8s/cluster/https-certs/certs/*
+k8s/cluster/https-certs/certs/*

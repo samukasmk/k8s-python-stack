@@ -16,10 +16,10 @@ k8s_yaml('k8s/python-apps/flask/manifests/1.deployment.yaml')
 # k8s_yaml('k8s/python-apps/flask/manifests/2.service.yaml')
 # k8s_yaml('k8s/python-apps/flask/manifests/3.ingres.yaml')
 
-k8s_resource('example-python', port_forwards=8000)
+k8s_resource('flask-app', port_forwards=8000)
 
 docker_build(
-    'example-python-image',
+    'flask-app-image',
     './apps/flask',
     # dockerfile="Dockerfile",
     build_args={'flask_debug': 'True'},
@@ -28,8 +28,8 @@ docker_build(
 ])
 
 local_resource(
-  "restart-example-python",
-  cmd="kubectl rollout restart deploy/example-python",
+  "restart-flask-app",
+  cmd="kubectl rollout restart deploy/flask-app",
   deps=["."],  # watch folders to restart the deployment when files change
   auto_init=False
 )
