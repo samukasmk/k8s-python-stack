@@ -34,13 +34,3 @@ k8s_resource(
     links=['http://flask-app.127.0.0.1.nip.io/'],
     labels=['flask-app']
 )
-
-## restart every chankl
-# local_resource(
-#    "live-update",
-#    cmd="kubectl rollout restart deploy/flask-app",
-#    deps=["./apps/flask"],         # watch folders to restart the deployment when files change
-#    resource_deps=["flask-app"],   # só roda depois do flask-app existir
-#    auto_init=False,               # não roda no primeiro tilt up
-#    labels=['flask-app']
-# )

@@ -6,7 +6,7 @@ sudo echo "Starting at: $(date)"
 
 pushd k8s/cluster/cluster-kind
 bash increase-open-files.sh
-bash create-cluster.sh kind
+bash create-cluster.sh tilt
 popd
 
 pushd k8s/cluster/https-certs
