@@ -1,3 +1,5 @@
+echo
+echo
 echo '=========================================================================='
 echo "# helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx"
 echo '=========================================================================='
@@ -14,14 +16,14 @@ echo
 echo
 echo '=========================================================================='
 echo "# helm install ingress-nginx ingress-nginx/ingress-nginx \\"
-echo "  --namespace ingress-nginx --create-namespace \\"
-echo "  --set defaultBackend.enabled=true \\"
-echo "  --set controller.kind=DaemonSet \\"
-echo "  --set controller.hostPort.enabled=true \\"
-echo "  --set controller.admissionWebhooks.enabled=true \\"
-echo "  --set controller.admissionWebhooks.patch.enabled=true \\"
-echo "  --set-string controller.nodeSelector.ingress-ready=true \\"
-echo "  -f ./values/ingress-nginx.yaml"
+echo "#   --namespace ingress-nginx --create-namespace \\"
+echo "#   --set defaultBackend.enabled=true \\"
+echo "#   --set controller.kind=DaemonSet \\"
+echo "#   --set controller.hostPort.enabled=true \\"
+echo "#   --set controller.admissionWebhooks.enabled=true \\"
+echo "#   --set controller.admissionWebhooks.patch.enabled=true \\"
+echo "#   --set-string controller.nodeSelector.ingress-ready=true \\"
+echo "#   -f ./values/ingress-nginx.yaml"
 echo '=========================================================================='
 helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx \
   --namespace ingress-nginx --create-namespace \

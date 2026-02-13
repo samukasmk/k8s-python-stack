@@ -10,13 +10,13 @@ metadata:
 spec:
   ingressClassName: nginx
 
-  # tls:
-  # - hosts:
-  #     - apps.127.0.0.1.nip.io
-  #   secretName: https-certs
+  tls:
+  - hosts:
+      - flask-app.127.0.0.1.nip.io
+    secretName: https-certs
 
   rules:
-  - host: apps.127.0.0.1.nip.io
+  - host: flask-app.127.0.0.1.nip.io
 
     http:
       paths:
@@ -26,4 +26,4 @@ spec:
           service:
             name: flask-app-service
             port:
-              number: 8000
+              number: 80
