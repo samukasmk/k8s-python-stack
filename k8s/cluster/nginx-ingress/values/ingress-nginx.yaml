@@ -1,0 +1,30 @@
+# values/ingress-nginx.yaml
+controller:
+  kind: DaemonSet
+
+  hostPort:
+    enabled: true   # abre 80/443 diretamente nos nós
+
+  admissionWebhooks:
+    enabled: true
+    patch:
+      enabled: true
+
+  # IMPORTANTE: string "true" (não boolean) para casar com o label do KIND
+  nodeSelector:
+    ingress-ready: "true"
+
+  # Permite agendar no control-plane (tem taint)
+  tolerations:
+    - key: node-role.kubernetes.io/control-plane
+      operator: Exists
+      effect: NoSchedule
+    - key: node-role.kubernetes.io/master
+      operator: Exists
+      effect: NoSchedule
+
+defaultBackend:
+  enabled: true
+
+
+
