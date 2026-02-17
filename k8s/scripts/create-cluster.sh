@@ -5,7 +5,7 @@
 sudo echo "Starting at: $(date)"
 
 pushd k8s/cluster/cluster-kind
-bash increase-open-files.sh
+# bash increase-open-files.sh
 bash create-cluster.sh tilt
 popd
 
