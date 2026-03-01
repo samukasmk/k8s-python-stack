@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 
-sudo echo "Destroing at: $(date)"
+echo "Destroing at: $(date)"
 
 echo
 echo
