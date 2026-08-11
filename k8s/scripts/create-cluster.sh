@@ -21,21 +21,21 @@ pushd k8s/dev-tools/docker-registry
 bash docker-registry.sh
 popd
 
-pushd k8s/infra-services/mongodb
+#pushd k8s/infra-services/mongodb
 # bash ...
-popd
+#popd
 
-pushd k8s/infra-services/postgres
+#pushd k8s/infra-services/postgres
 # bash ...
-popd
+#popd
 
-pushd k8s/infra-services/kafka
+#pushd k8s/infra-services/kafka
 # bash ...
-popd
+#popd
 
-pushd k8s/infra-services/websockets
+#pushd k8s/infra-services/websockets
 # bash ...
-popd
+#popd
 
 echo
 echo
