@@ -7,10 +7,10 @@ help: ## Display this help
 # kind commands
 #
 create-cluster: destroy-cluster ## Create the k8s cluster with kind [alias: create|cc]
-	@bash k8s/scripts/create-cluster.sh
+	@bash platform/clusters/local/scripts/create-cluster.sh
 
 destroy-cluster: ## Destroy the k8s cluster with kind [alias: destroy|dc]
-	@bash k8s/scripts/destroy-cluster.sh
+	@bash platform/clusters/local/scripts/destroy-cluster.sh
 
 recreate-cluster: destroy create ## Recreate the k8s cluster with kind [alias: recreate|rc]
 

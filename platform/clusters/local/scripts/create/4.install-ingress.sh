@@ -23,11 +23,11 @@ echo "#   --set controller.hostPort.enabled=true \\"
 echo "#   --set controller.admissionWebhooks.enabled=true \\"
 echo "#   --set controller.admissionWebhooks.patch.enabled=true \\"
 echo "#   --set-string controller.nodeSelector.ingress-ready=true \\"
-echo "#   -f ./values/ingress-nginx.yaml"
+echo "#   -f platform/clusters/local/k8s/ingress/values/ingress-nginx.yaml"
 echo '=========================================================================='
 helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx \
   --namespace ingress-nginx --create-namespace \
-  -f ./values/ingress-nginx.yaml
+  -f platform/clusters/local/k8s/ingress/values/ingress-nginx.yaml
 
 
 # rotula TODOS os nodes do cluster com ingress-ready=true

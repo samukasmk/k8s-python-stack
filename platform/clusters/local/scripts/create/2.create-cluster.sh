@@ -10,7 +10,6 @@ fi
 echo
 echo
 echo '=========================================================================='
-echo "# kind create cluster --name \"$CLUSTER_NAME\" --config ./manifests/kind.yml"
+echo "# kind create cluster --name \"$CLUSTER_NAME\" --config ./platform/clusters/local/k8s/cluster/kind.yml"
 echo '=========================================================================='
-kind create cluster --name "$CLUSTER_NAME" --config ./manifests/kind.yml
-
+kind create cluster --name "$CLUSTER_NAME" --config ./platform/clusters/local/k8s/cluster/kind.yml
