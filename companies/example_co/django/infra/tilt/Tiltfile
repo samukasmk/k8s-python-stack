@@ -1,18 +1,18 @@
-
 #
-# Django app
+# Django APP
 #
 
 def example_co_django():
-    COMPANY_FOLDER = './companies/example_co'
-    APP_FOLDER = f'{COMPANY_FOLDER}/django/app'
-    K8S_FOLDER = f'{COMPANY_FOLDER}/django/infra/k8s/manifests/'
+    COMPANY_FOLDER = 'companies/example_co/'
+    APP_FOLDER = COMPANY_FOLDER + 'django/app/'
+    K8S_FOLDER = COMPANY_FOLDER + 'django/infra/k8s/manifests/'
 
     # docker build
     docker_build(
-        'django-app-image',
-        APP_FOLDER,
+        ref='django-app-image',
+        context=APP_FOLDER,
         build_args={'django_debug': 'True'},
+        dockerfile=APP_FOLDER + 'Dockerfile',
         live_update=[
             sync(APP_FOLDER, '/app'),
             run('sh -lc "kill -HUP 1"'),
@@ -20,13 +20,13 @@ def example_co_django():
     )
 
     # kubernetes manifests
-    k8s_yaml(f'{K8S_FOLDER}/1.deployment.yaml')
-    k8s_yaml(f'{K8S_FOLDER}/2.service.yaml')
-    k8s_yaml(f'{K8S_FOLDER}/3.ingres.yaml')
+    k8s_yaml(K8S_FOLDER + '1.deployment.yaml')
+    k8s_yaml(K8S_FOLDER + '2.service.yaml')
+    k8s_yaml(K8S_FOLDER + '3.ingres.yaml')
 
     # kubernetes ingress
     k8s_resource(
-        'django-app',
+        workload='django-app',
         objects=['django-app-ingress:ingress'],
         links=['http://django-app.127.0.0.1.nip.io/'],
         labels=['django-app']

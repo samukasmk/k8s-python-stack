@@ -18,10 +18,10 @@ recreate-cluster: destroy create ## Recreate the k8s cluster with kind [alias: r
 # tilt commands
 #
 down: ## Stop the cluster with tilt [alias: down|d]
-	@tilt down
+	@tilt down --verbose
 
 up: down ## Start the cluster with tilt [alias: up|u]
-	@tilt up
+	@tilt up --verbose --stream=true
 
 restart: up ## Restart the cluster with tilt [alias: restart|r]
 

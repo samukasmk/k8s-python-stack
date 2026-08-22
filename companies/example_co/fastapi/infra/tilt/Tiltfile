@@ -1,17 +1,18 @@
 #
-# FastAPI app
+# FastAPI APP
 #
 
 def example_co_fastapi():
-    COMPANY_FOLDER = './companies/example_co'
-    APP_FOLDER = f'{COMPANY_FOLDER}/fastapi/app'
-    K8S_FOLDER = f'{COMPANY_FOLDER}/fastapi/infra/k8s/manifests/'
+    COMPANY_FOLDER = 'companies/example_co/'
+    APP_FOLDER = COMPANY_FOLDER + 'fastapi/app/'
+    K8S_FOLDER = COMPANY_FOLDER + 'fastapi/infra/k8s/manifests/'
 
     # docker build
     docker_build(
-        'fastapi-app-image',
-        APP_FOLDER,
+        ref='fastapi-app-image',
+        context=APP_FOLDER,
         build_args={'fastapi_debug': 'True'},
+        dockerfile=APP_FOLDER + 'Dockerfile',
         live_update=[
             sync(APP_FOLDER, '/app'),
             run('sh -lc "kill -HUP 1"'),
@@ -19,13 +20,13 @@ def example_co_fastapi():
     )
 
     # kubernetes manifests
-    k8s_yaml(f'{K8S_FOLDER}/1.deployment.yaml')
-    k8s_yaml(f'{K8S_FOLDER}/2.service.yaml')
-    k8s_yaml(f'{K8S_FOLDER}/3.ingres.yaml')
+    k8s_yaml(K8S_FOLDER + '1.deployment.yaml')
+    k8s_yaml(K8S_FOLDER + '2.service.yaml')
+    k8s_yaml(K8S_FOLDER + '3.ingres.yaml')
 
     # kubernetes ingress
     k8s_resource(
-        'fastapi-app',
+        workload='fastapi-app',
         objects=['fastapi-app-ingress:ingress'],
         links=['http://fastapi-app.127.0.0.1.nip.io/'],
         labels=['fastapi-app']
